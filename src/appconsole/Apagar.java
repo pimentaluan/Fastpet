@@ -19,7 +19,7 @@ public class Apagar {
 			manager.commit();
 			System.out.println("pet apagado");
 		} else {
-			System.out.println("pet não encontrado");
+			System.out.println("pet nÃ£o encontrado");
 		}
 
 		Util.desconectar();

@@ -9,7 +9,7 @@ public class Cadastrar {
 	public static void main(String[] args) {
 		manager = Util.conectarBanco();
 
-		Tutor t1 = new Tutor("11111111111", "José", "83990000001");
+		Tutor t1 = new Tutor("11111111111", "JosÃ©", "83990000001");
 		Tutor t2 = new Tutor("22222222222", "Maria", "83990000002");
 
 		Pet p1 = new Pet("Rex", t1, "Labrador");
@@ -24,6 +24,6 @@ public class Cadastrar {
 
 		manager.commit();
 		Util.desconectar();
-		System.out.println("cadastrou os pets com seus tutores e serviços");
+		System.out.println("cadastrou os pets com seus tutores e serviÃ§os");
 	}
 }

@@ -19,9 +19,9 @@ public class Alterar {
 			rex.adicionarServico(new Servico(rex.getApelido(), rex.getTutor().getNome(), "tosa"));
 			manager.store(rex);
 			manager.commit();
-			System.out.println("serviÁo de tosa adicionado a Rex");
+			System.out.println("servi√ßo de tosa adicionado a Rex");
 		} else {
-			System.out.println("pet n„o encontrado");
+			System.out.println("pet n√£o encontrado");
 		}
 
 		Util.desconectar();
