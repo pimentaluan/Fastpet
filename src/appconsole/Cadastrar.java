@@ -23,8 +23,6 @@ public class Cadastrar {
 		Servico s2 = new Servico("", p1, "tosa");
 		Servico s3 = new Servico("", p2, "banho");
 		Servico s4 = new Servico("", p3, "hospedagem");
-
-
 		
 	
 		
