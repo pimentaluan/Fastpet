@@ -55,6 +55,6 @@ public class Pet {
 
 	@Override
 	public String toString() {
-		return apelido + " (" + raca + ") - Tutor: " + tutor.getNome() + ", Serviços: " + getQuantidadeServicos();
+		return apelido + " (" + raca + ") - Tutor: " + tutor.getNome() + ", ServiÃ§os: " + getQuantidadeServicos();
 	}
 }

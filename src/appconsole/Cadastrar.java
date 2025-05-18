@@ -11,16 +11,27 @@ public class Cadastrar {
 
 		Tutor t1 = new Tutor("11111111111", "José", "83990000001");
 		Tutor t2 = new Tutor("22222222222", "Maria", "83990000002");
+		Tutor t3 = new Tutor("33333333333", "Pedro", "83990000003");
+		
+		
 
 		Pet p1 = new Pet("Rex", t1, "Labrador");
 		Pet p2 = new Pet("Mimi", t2, "Persa");
+		Pet p3 = new Pet("Miau", t3, "Persa");
 
-		p1.adicionarServico(new Servico(p1.getApelido(), t1.getNome(), "banho"));
-		p2.adicionarServico(new Servico(p2.getApelido(), t2.getNome(), "banho"));
-		p2.adicionarServico(new Servico(p2.getApelido(), t2.getNome(), "tosa"));
+		Servico s1 = new Servico("", p1, "banho");
+		Servico s2 = new Servico("", p1, "tosa");
+		Servico s3 = new Servico("", p2, "banho");
+		Servico s4 = new Servico("", p3, "hospedagem");
 
-		manager.store(p1);
-		manager.store(p2);
+
+		
+	
+		
+		manager.store(s1);
+		manager.store(s2);
+		manager.store(s3);
+		manager.store(s4);
 
 		manager.commit();
 		Util.desconectar();

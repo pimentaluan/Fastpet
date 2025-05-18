@@ -5,17 +5,17 @@ import java.time.format.DateTimeFormatter;
 
 public class Servico {
 	private String datahora;
-	private String apelido;
-	private String tutor;
+	private Pet pet;
 	private String tipo;
 
 	public Servico() {}
 
-	public Servico(String apelido, String tutor, String tipo) {
-		this.datahora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-		this.apelido = apelido;
-		this.tutor = tutor;
+	public Servico(String datahora ,Pet pet ,String tipo) {
+		this.datahora = datahora;
+		this.pet = pet;
+		this.pet.adicionarServico(this);
 		this.tipo = tipo;
+		
 	}
 
 	public String getDatahora() {
@@ -24,19 +24,13 @@ public class Servico {
 	public void setDatahora(String datahora) {
 		this.datahora = datahora;
 	}
-
-	public String getApelido() {
-		return apelido;
+	
+	public Pet getPet() {
+		return this.pet;
 	}
-	public void setApelido(String apelido) {
-		this.apelido = apelido;
-	}
-
-	public String getTutor() {
-		return tutor;
-	}
-	public void setTutor(String tutor) {
-		this.tutor = tutor;
+	
+	public void setPet(Pet pet) {
+		this.pet = pet;
 	}
 
 	public String getTipo() {
@@ -48,6 +42,6 @@ public class Servico {
 
 	@Override
 	public String toString() {
-		return tipo + " em " + datahora + " - Pet: " + apelido;
+		return tipo + " em " + datahora + " - Pet: " + this.pet.getApelido() + "Tutor: " + this.pet.getTutor().getNome();
 	}
 }
