@@ -16,10 +16,13 @@ public class Alterar {
 
 		if (!resultado.isEmpty()) {
 			Pet rex = resultado.next();
-			rex.adicionarServico(new Servico(rex.getApelido(), rex.getTutor().getNome(), "tosa"));
+
+			String datahora = "16/05/2025 10:00";
+			new Servico(datahora, rex, "tosa");
+
 			manager.store(rex);
 			manager.commit();
-			System.out.println("serviço de tosa adicionado a Rex");
+			System.out.println("serviço de tosa agendado para Rex em " + datahora);
 		} else {
 			System.out.println("pet não encontrado");
 		}

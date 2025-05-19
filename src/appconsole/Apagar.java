@@ -15,9 +15,15 @@ public class Apagar {
 		});
 
 		if (!resultado.isEmpty()) {
-			manager.delete(resultado.next());
+			Pet mimi = resultado.next();
+
+			for (Servico s : mimi.getServicos()) {
+				manager.delete(s);
+			}
+
+			manager.delete(mimi);
 			manager.commit();
-			System.out.println("pet apagado");
+			System.out.println("pet e serviços relacionados apagados");
 		} else {
 			System.out.println("pet não encontrado");
 		}

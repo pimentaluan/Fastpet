@@ -6,7 +6,6 @@ public class Servico {
 	private Pet pet;
 	private String tipo;
 
-	public Servico() {}
 
 	public Servico(String datahora ,Pet pet ,String tipo) {
 		this.datahora = datahora;
