@@ -39,6 +39,6 @@ public class Servico {
 
 	@Override
 	public String toString() {
-		return tipo + " em " + datahora + " - Pet: " + this.pet.getApelido() + "Tutor: " + this.pet.getTutor().getNome();
+		return tipo + " em " + datahora + " - Pet: " + this.pet.getApelido() + " - Tutor: " + this.pet.getTutor().getNome();
 	}
 }

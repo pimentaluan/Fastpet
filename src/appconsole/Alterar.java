@@ -1,32 +1,40 @@
 package appconsole;
 
+import java.util.List;
+
 import com.db4o.ObjectContainer;
-import com.db4o.query.Predicate;
-import modelo.*;
+import com.db4o.query.Query;
+
+import modelo.Pet;
+import modelo.Servico;
 
 public class Alterar {
-	public static void main(String[] args) {
-		ObjectContainer manager = Util.conectarBanco();
+    private static ObjectContainer manager;
 
-		var resultado = manager.query(new Predicate<Pet>() {
-			public boolean match(Pet p) {
-				return p.getApelido().equalsIgnoreCase("Rex");
-			}
-		});
+    public static void main(String[] args) {
+        manager = Util.conectarBanco();
+        System.out.println("Alteracao: remover o ultimo servico do pet Rex");
 
-		if (!resultado.isEmpty()) {
-			Pet rex = resultado.next();
+        Query q = manager.query();
+        q.constrain(Pet.class);
+        q.descend("apelido").constrain("Rex");
+        List<Pet> resultado = q.execute();
 
-			String datahora = "16/05/2025 10:00";
-			new Servico(datahora, rex, "tosa");
+        if (!resultado.isEmpty()) {
+            Pet rex = resultado.getFirst();
 
-			manager.store(rex);
-			manager.commit();
-			System.out.println("serviço de tosa agendado para Rex em " + datahora);
-		} else {
-			System.out.println("pet não encontrado");
-		}
+            if (rex.getServicos().isEmpty()) {
+                System.out.println("Pet não possui serviços para remover");
+            } else {
+                Servico removido = rex.getServicos().removeLast();
+                manager.store(rex);
+                manager.commit();
+                System.out.println("Último serviço removido: " + removido.getTipo());
+            }
+        } else {
+            System.out.println("Pet não encontrado");
+        }
 
-		Util.desconectar();
-	}
+        Util.desconectar();
+    }
 }

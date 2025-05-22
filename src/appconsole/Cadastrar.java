@@ -18,22 +18,28 @@ public class Cadastrar {
 		Pet p3 = new Pet("Miau", t3, "Siames");
 		Pet p4 = new Pet("Bolt", t1, "Golden");
 		Pet p5 = new Pet("Luna", t2, "Poodle");
+		Pet p6 = new Pet("Thor", t1, "Labrador");
 
-		new Servico("15/05/2025 08:00", p1, "banho");
-		new Servico("15/05/2025 09:00", p1, "tosa");
-		new Servico("15/05/2025 08:30", p2, "banho");
-		new Servico("15/05/2025 10:00", p2, "vacina");
-		new Servico("15/05/2025 11:00", p3, "hospedagem");
-		new Servico("15/05/2025 08:00", p4, "consulta");
-		new Servico("15/05/2025 09:30", p5, "banho");
-		new Servico("15/05/2025 09:30", p3, "banho");
+		Servico s1 = new Servico("15/05/2025 08:00", p1, "banho");
+		Servico s2 = new Servico("15/05/2025 09:00", p1, "tosa");
+		Servico s3 = new Servico("14/05/2025 08:30", p2, "banho");
+		Servico s4 = new Servico("15/05/2025 10:00", p2, "vacina");
+		Servico s5 = new Servico("15/05/2025 11:00", p3, "hospedagem");
+		Servico s6 = new Servico("15/05/2025 08:00", p4, "consulta");
+		Servico s7 = new Servico("15/05/2025 09:30", p5, "banho");
+		Servico s8 = new Servico("15/05/2025 09:30", p3, "banho");
+		
 
-		manager.store(p1);
-		manager.store(p2);
-		manager.store(p3);
-		manager.store(p4);
-		manager.store(p5);
-
+		manager.store(s1);
+		manager.store(s2);
+		manager.store(s3);
+		manager.store(s4);
+		manager.store(s5);
+		manager.store(s6);
+		manager.store(s7);
+		manager.store(s8);
+		manager.store(p6);
+	
 		manager.commit();
 		Util.desconectar();
 		System.out.println("Cadastrou pets, tutores e agendamentos de serviços.");
