@@ -15,14 +15,9 @@ public class Consultar {
     private ObjectContainer manager;
 
     public Consultar() {
-        try {
             manager = Util.conectarBanco();
             consultar();
             Util.desconectar();
-        } catch (Exception e) {
-            System.out.println("Erro ao conectar no banco de dados: " + e.getMessage());
-            return;
-        }
     }
 
     public void consultar() {
@@ -42,12 +37,11 @@ public class Consultar {
         }
 
         System.out.println("\n--- Quais pets banharam na data 15/05/2025");
-        Filtro1.dataDesejada = "15/05/2025";
-        Filtro1.tipoDesejado = "banho";
+        Filtro1 filtro1 = new Filtro1("15/05/2025", "banho");
 
         q = manager.query();
         q.constrain(Servico.class);
-        q.constrain(new Filtro1());
+        q.constrain(filtro1);
         servicos = q.execute();
 
         for (Servico servico : servicos) {
@@ -55,11 +49,11 @@ public class Consultar {
         }
 
         System.out.println("\n--- Listar pets contendo mais de 1 servico");
-        Filtro2.n = 1;
+        Filtro2 filtro2 = new Filtro2(1);
 
         q = manager.query();
         q.constrain(Pet.class);
-        q.constrain(new Filtro2());
+        q.constrain(filtro2);
         pets = q.execute();
 
         for (Pet pet : pets) {
@@ -73,8 +67,13 @@ public class Consultar {
 }
 
 class Filtro1 implements Evaluation {
-    public static String dataDesejada;
-    public static String tipoDesejado;
+    private String dataDesejada;
+    private String tipoDesejado;
+
+    public Filtro1(String dataDesejada, String tipoDesejado) {
+        this.dataDesejada = dataDesejada;
+        this.tipoDesejado = tipoDesejado;
+    }
 
     public void evaluate(Candidate candidate) {
         Servico servico = (Servico) candidate.getObject();
@@ -87,7 +86,11 @@ class Filtro1 implements Evaluation {
 }
 
 class Filtro2 implements Evaluation {
-    public static int n;
+    private int n;
+
+    public Filtro2(int n) {
+        this.n = n;
+    }
 
     public void evaluate(Candidate candidate) {
         Pet pet = (Pet) candidate.getObject();
