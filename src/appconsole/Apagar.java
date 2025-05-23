@@ -1,33 +1,38 @@
 package appconsole;
 
+import java.util.List;
+
 import com.db4o.ObjectContainer;
-import com.db4o.query.Predicate;
-import modelo.*;
+import com.db4o.query.Query;
+
+import modelo.Pet;
+import modelo.Servico;
 
 public class Apagar {
-	public static void main(String[] args) {
-		ObjectContainer manager = Util.conectarBanco();
+    public static void main(String[] args) {
+        ObjectContainer manager = Util.conectarBanco();
 
-		var resultado = manager.query(new Predicate<Pet>() {
-			public boolean match(Pet p) {
-				return p.getApelido().equalsIgnoreCase("Mimi");
-			}
-		});
+        System.out.println("Apagar o pet Mimi e seus serviços relacionados");
 
-		if (!resultado.isEmpty()) {
-			Pet mimi = resultado.next();
+        Query q = manager.query();
+        q.constrain(Pet.class);
+        q.descend("apelido").constrain("Mimi");
+        List<Pet> resultado = q.execute();
 
-			for (Servico s : mimi.getServicos()) {
-				manager.delete(s);
-			}
+        if (!resultado.isEmpty()) {
+            Pet mimi = resultado.get(0);
 
-			manager.delete(mimi);
-			manager.commit();
-			System.out.println("pet e serviços relacionados apagados");
-		} else {
-			System.out.println("pet não encontrado");
-		}
+            for (Servico s : mimi.getServicos()) {
+                manager.delete(s);
+            }
 
-		Util.desconectar();
-	}
+            manager.delete(mimi);
+            manager.commit();
+            System.out.println("Pet e serviços relacionados apagados com sucesso.");
+        } else {
+            System.out.println("Pet não encontrado.");
+        }
+
+        Util.desconectar();
+    }
 }
