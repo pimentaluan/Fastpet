@@ -46,13 +46,6 @@ public class Pet {
 	}
 
 	public void adicionarServico(Servico s) {
-		for (Servico existente : this.servicos) {
-			if (existente.getDatahora().equals(s.getDatahora()) &&
-				existente.getTipo().equalsIgnoreCase(s.getTipo())) {
-				System.out.println("Horário já ocupado para esse tipo de serviço: " + s.getTipo() + " às " + s.getDatahora());
-				return;
-			}
-		}
 		this.servicos.add(s);
 	}
 
