@@ -9,8 +9,6 @@ public class Pet {
 	private String raca;
 	private List<Servico> servicos = new ArrayList<>();
 
-	public Pet() {}
-
 	public Pet(String apelido, Tutor tutor, String raca) {
 		this.apelido = apelido;
 		this.tutor = tutor;
